@@ -1,7 +1,18 @@
-.outer-container {
+body {
   display: flex;
-  align-items: center;
-  height: 100vh;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 98vh;
+}
+
+.container {
+  border: 3px solid red;
+}
+
+h1 {
+  text-align: center;
+  font-size: 45px;
+  font-family: "Brush Script MT", "Brush Script Std", cursive;
 }
 
 .inner-container {
@@ -17,5 +28,13 @@
 }
 
 .break {
-  flex-basis: 100%
+  flex-basis: 100%;
+}
+
+footer {
+  text-align: center;
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
