@@ -1,0 +1,21 @@
+.outer-container {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+
+.inner-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.grid {
+  height: 1cm;
+  width: 1cm;
+  border: 1px solid black;
+}
+
+.break {
+  flex-basis: 100%
+}
