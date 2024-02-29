@@ -14,6 +14,8 @@ h1 {
 .outer-container {
   display: flex;
   justify-content: center;
+  /* border: 5px solid black; */
+  margin-top: -20px;
 }
 
 .inner-container {
@@ -23,27 +25,6 @@ h1 {
   /* display: flex; */
   /* flex-direction: column; */
 }
-
-/* this class is necessary for making the grid dynamic */
-.row-style {
-  box-sizing: border-box;
-  border: 1px solid black;
-  width: 100%;
-
-  /* 660/16 -> height/number of columns */
-  height: 41.25px;    
-  display: flex;
-}
-
-.grid {
-  box-sizing: border-box;
-  /* width and height will have to be set dynamically */
-  width: 60px; /* 960/16 -> width/number of columns */
-  height: 41.25px;  /* 660/16 -> height/number of columns */
-  border: 1px solid black;
-  /* background-color: lavenderblush; */
-}
-
 
 footer {
   text-align: center;

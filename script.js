@@ -2,9 +2,8 @@ const container = document.querySelector(".inner-container");
 
 function createGridRows() {
     for (let i = 1; i <= 16; i++) {
-        const row = document.createElement("div");
-        row.classList.add("row-style");
-        container.appendChild(row);
+        container.innerHTML += `<div class="row-style" style="
+        box-sizing: border-box;border: 1px solid black;width: 100%;height: ${660 / 16}px;display: flex;"></div>`
     }
 }
 
@@ -17,15 +16,17 @@ function createGridColumns() {
 }
 
 function createGridPixels() {//create individual grids
-    let gridDivs = ``
+    let pixelDivs = ``
     for (let i = 1; i <= 16; i++) {
-        gridDivs += `<div class="grid"></div>`;
+        pixelDivs += `<div class="pixel" style="width: ${960 / 16}px; height:${660 / 16}px;
+        box-sizing: border-box; border: 1px solid black;"></div>`;
     }
-    return gridDivs
+
+    return pixelDivs;
 }
 
 function enableColoring() {
-    const squares = document.getElementsByClassName("grid");
+    const squares = document.getElementsByClassName("pixel");
     for (let i = 0; i < squares.length; i++) {
         squares[i].addEventListener("mouseover", () => {
             squares[i].style.backgroundColor = `rgb(${getRGBValue()} ${getRGBValue()} ${getRGBValue()})`;
@@ -38,6 +39,10 @@ function getRGBValue() {
     return (Math.floor(Math.random() * 256)).toString();
 }
 
-createGridRows();
-createGridColumns()
-enableColoring();
+function createGrid() {
+    createGridRows();
+    createGridColumns()
+    enableColoring();
+}
+
+createGrid();
