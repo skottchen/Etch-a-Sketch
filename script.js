@@ -1,24 +1,69 @@
 const container = document.querySelector(".inner-container");
+const generateGridBtn = document.getElementById("generateGrid");
+const userInput = document.getElementById("pixels_per_side");
+const clearGridBtn = document.getElementById("clear_grid");
+const eraserBtn = document.getElementById("eraser");
+let eraserActive = false;
+let userInputVal;
+createGrid(16); //default grid is 16 x 16
+generateGridBtn.addEventListener("click", () => {
+    userInputVal = userInput.value;
+    if (!Number.isInteger((+userInputVal))//must convert argument to a number for Number.isInteger to work
+        || userInputVal < 1
+        || userInputVal > 100
+        || isNaN(userInputVal)) {
+        alert("Please enter a whole number between 1 and 100 in the input field");
+        userInput.value = "";
+    } else {
+        container.innerHTML = "";
+        createGrid(userInputVal);
+    }
+})
 
-function createGridRows() {
-    for (let i = 1; i <= 16; i++) {
+clearGridBtn.addEventListener("click", () => {
+    const pixels = document.getElementsByClassName("pixel");
+    console.log(pixels);
+    for (let i = 0; i < pixels.length; i++) {
+        pixels[i].style.backgroundColor = `white`;
+    }
+})
+
+eraserBtn.addEventListener("click", () => {
+    eraserActive = !eraserActive;
+    if (eraserActive == true) {
+        eraserBtn.textContent = "Eraser: On"
+    } else {
+        eraserBtn.textContent = "Eraser: Off"
+    }
+    // console.log(eraserActive);
+})
+
+
+function createGrid(userInputVal) {
+    createGridRows(userInputVal);
+    createGridColumns(userInputVal)
+    enableColoring();
+}
+
+function createGridRows(userInputVal) {
+    for (let i = 1; i <= userInputVal; i++) {
         container.innerHTML += `<div class="row-style" style="
-        box-sizing: border-box;border: 1px solid black;width: 100%;height: ${660 / 16}px;display: flex;"></div>`
+        box-sizing: border-box;border: 1px solid black;width: 100%;height: ${660 / userInputVal}px;display: flex;"></div>`
     }
 }
 
-function createGridColumns() {
+function createGridColumns(userInputVal) {
     const rows = document.getElementsByClassName("row-style");
-    for (let i = 0; i < 16; i++) {
-        rows[i].innerHTML += rows[i].innerHTML + createGridPixels();//adding 16 divs with class "grid" to each row
+    for (let i = 0; i < userInputVal; i++) {
+        rows[i].innerHTML += rows[i].innerHTML + createGridPixels(userInputVal);//adding userInputVal divs with class "grid" to each row
     }
     console.log(rows)
 }
 
-function createGridPixels() {//create individual grids
+function createGridPixels(userInputVal) {//create individual grids
     let pixelDivs = ``
-    for (let i = 1; i <= 16; i++) {
-        pixelDivs += `<div class="pixel" style="width: ${960 / 16}px; height:${660 / 16}px;
+    for (let i = 1; i <= userInputVal; i++) {
+        pixelDivs += `<div class="pixel" style="width: ${960 / userInputVal}px; height:${660 / userInputVal}px;
         box-sizing: border-box; border: 1px solid black;"></div>`;
     }
 
@@ -26,10 +71,10 @@ function createGridPixels() {//create individual grids
 }
 
 function enableColoring() {
-    const squares = document.getElementsByClassName("pixel");
-    for (let i = 0; i < squares.length; i++) {
-        squares[i].addEventListener("mouseover", () => {
-            squares[i].style.backgroundColor = `rgb(${getRGBValue()} ${getRGBValue()} ${getRGBValue()})`;
+    const pixels = document.getElementsByClassName("pixel");
+    for (let i = 0; i < pixels.length; i++) {
+        pixels[i].addEventListener("mouseover", () => {
+            pixels[i].style.backgroundColor = `rgb(${getRGBValue()} ${getRGBValue()} ${getRGBValue()})`;
         })
     }
 }
@@ -38,11 +83,3 @@ function getRGBValue() {
     //random number from 0 (inclusive) to 256 (inclusive)
     return (Math.floor(Math.random() * 256)).toString();
 }
-
-function createGrid() {
-    createGridRows();
-    createGridColumns()
-    enableColoring();
-}
-
-createGrid();

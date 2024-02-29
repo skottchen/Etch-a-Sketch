@@ -3,16 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Etch a Sketch</title>
+    <title>Etch-a-Sketch</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <div>
       <h1>Etch-a-Sketch</h1>
-      <div class="outer-container">
-        <div class="inner-container">
-        </div>
+      <div class="user-controls">
+        <label for="pixels_per_side">#pixels per side </label>
+        <input type="text" id="pixels_per_side" placeholder="16" />
+        <button id="generateGrid">Generate new grid</button>
+        <button id="eraser">Eraser: Off</button>
+        <button id="clear_grid">Clear grid</button>
       </div>
+    </div>
+    <div class="outer-container">
+      <div class="inner-container"></div>
     </div>
     <footer>
       Copyright © 2024 skottchen<a
