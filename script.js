@@ -3,7 +3,7 @@ const generateGridBtn = document.getElementById("generateGrid");
 const userInput = document.getElementById("pixels_per_side");
 const clearGridBtn = document.getElementById("clear_grid");
 const eraserBtn = document.getElementById("eraser");
-let eraserActive = false;
+let eraserOn = false;
 let userInputVal;
 createGrid(16); //default grid is 16 x 16
 generateGridBtn.addEventListener("click", () => {
@@ -29,26 +29,26 @@ clearGridBtn.addEventListener("click", () => {
 })
 
 eraserBtn.addEventListener("click", () => {
-    eraserActive = !eraserActive;
-    if (eraserActive == true) {
+    eraserOn = !eraserOn;
+    if (eraserOn) {
         eraserBtn.textContent = "Eraser: On"
     } else {
         eraserBtn.textContent = "Eraser: Off"
     }
-    // console.log(eraserActive);
+    enableOrDisableColoring();
 })
 
 
 function createGrid(userInputVal) {
     createGridRows(userInputVal);
-    createGridColumns(userInputVal)
-    enableColoring();
+    createGridColumns(userInputVal);
+    enableOrDisableColoring();
 }
 
 function createGridRows(userInputVal) {
     for (let i = 1; i <= userInputVal; i++) {
         container.innerHTML += `<div class="row-style" style="
-        box-sizing: border-box;border: 1px solid black;width: 100%;height: ${660 / userInputVal}px;display: flex;"></div>`
+        box-sizing:border-box;border: 1px solid black; width: 100%;height: ${660 / userInputVal}px;display: flex;"></div>`
     }
 }
 
@@ -64,19 +64,24 @@ function createGridPixels(userInputVal) {//create individual grids
     let pixelDivs = ``
     for (let i = 1; i <= userInputVal; i++) {
         pixelDivs += `<div class="pixel" style="width: ${960 / userInputVal}px; height:${660 / userInputVal}px;
-        box-sizing: border-box; border: 1px solid black;"></div>`;
+        box-sizing: border-box;border: 1px solid black; "></div>`;
     }
 
     return pixelDivs;
 }
 
-function enableColoring() {
+function enableOrDisableColoring() {
     const pixels = document.getElementsByClassName("pixel");
     for (let i = 0; i < pixels.length; i++) {
         pixels[i].addEventListener("mouseover", () => {
-            pixels[i].style.backgroundColor = `rgb(${getRGBValue()} ${getRGBValue()} ${getRGBValue()})`;
+            if (!eraserOn) {
+                pixels[i].style.backgroundColor = `rgb(${getRGBValue()} ${getRGBValue()} ${getRGBValue()})`;
+            } else {
+                pixels[i].style.backgroundColor = `white`;
+            }
         })
     }
+
 }
 
 function getRGBValue() {
