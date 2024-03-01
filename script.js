@@ -81,7 +81,6 @@ function enableOrDisableColoring() {
             }
         })
     }
-
 }
 
 function getRGBValue() {
