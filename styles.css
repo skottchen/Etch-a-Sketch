@@ -9,7 +9,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 8px;
 }
 
 .user-controls label,
@@ -31,12 +30,12 @@ h1 {
   text-align: center;
   font-size: 60px;
   font-family: "Brush Script MT", "Brush Script Std", cursive;
+  margin-bottom: -2px;
 }
 
 .outer-container {
   display: flex;
   justify-content: center;
-  margin-top: -20px;
 }
 
 .inner-container {
