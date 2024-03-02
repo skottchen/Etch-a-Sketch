@@ -3,11 +3,12 @@ const generateGridBtn = document.getElementById("generateGrid");
 const userInput = document.getElementById("pixels_per_side");
 const clearGridBtn = document.getElementById("clear_grid");
 const eraserBtn = document.getElementById("eraser");
+const gridWidth = 960;
+const gridHeight = 660;
 let eraserOn = false;
-let userInputVal;
 createGrid(16); //default grid is 16 x 16
 generateGridBtn.addEventListener("click", () => {
-    userInputVal = userInput.value;
+    let userInputVal = userInput.value;
     if (!Number.isInteger((+userInputVal))//must convert argument to a number for Number.isInteger to work
         || userInputVal < 1
         || userInputVal > 100
@@ -22,7 +23,6 @@ generateGridBtn.addEventListener("click", () => {
 
 clearGridBtn.addEventListener("click", () => {
     const pixels = document.getElementsByClassName("pixel");
-    console.log(pixels);
     for (let i = 0; i < pixels.length; i++) {
         pixels[i].style.backgroundColor = `white`;
     }
@@ -48,7 +48,7 @@ function createGrid(userInputVal) {
 function createGridRows(userInputVal) {
     for (let i = 1; i <= userInputVal; i++) {
         container.innerHTML += `<div class="row-style" style="
-        box-sizing:border-box;border: 1px solid black; width: 100%;height: ${660 / userInputVal}px;display: flex;"></div>`
+        box-sizing:border-box;border: 1px solid black; width: 100%;height: ${gridHeight / userInputVal}px;display: flex;"></div>`
     }
 }
 
@@ -57,13 +57,12 @@ function createGridColumns(userInputVal) {
     for (let i = 0; i < userInputVal; i++) {
         rows[i].innerHTML += rows[i].innerHTML + createGridPixels(userInputVal);//adding userInputVal divs with class "grid" to each row
     }
-    console.log(rows)
 }
 
 function createGridPixels(userInputVal) {//create individual grids
     let pixelDivs = ``
     for (let i = 1; i <= userInputVal; i++) {
-        pixelDivs += `<div class="pixel" style="width: ${960 / userInputVal}px; height:${660 / userInputVal}px;
+        pixelDivs += `<div class="pixel" style="width: ${gridWidth / userInputVal}px; height:${gridHeight / userInputVal}px;
         box-sizing: border-box;border: 1px solid black; "></div>`;
     }
 

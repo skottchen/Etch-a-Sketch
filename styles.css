@@ -40,8 +40,8 @@ h1 {
 
 .inner-container {
   border: 5px solid black;
-  width: 960px;
-  height: 660px;
+  /* width: 960px;
+  height: 660px; */
 }
 
 footer {
