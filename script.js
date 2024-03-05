@@ -55,7 +55,7 @@ function createGridRows(userInputVal) {
 function createGridColumns(userInputVal) {
     const rows = document.getElementsByClassName("row-style");
     for (let i = 0; i < userInputVal; i++) {
-        rows[i].innerHTML += rows[i].innerHTML + createGridPixels(userInputVal);//adding userInputVal divs with class "grid" to each row
+        rows[i].innerHTML += rows[i].innerHTML + createGridPixels(userInputVal);//adding #(userInputVal) divs with class "pixel" to each row
     }
 }
 
